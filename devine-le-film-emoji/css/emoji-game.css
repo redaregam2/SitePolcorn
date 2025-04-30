@@ -1,0 +1,351 @@
+/* === GLOBAL MOBILE-FIRST === */
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: #121212;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  padding: 10px;
+}
+
+/* Écran de démarrage */
+.start-screen {
+  position: fixed;
+  inset: 0;
+  background: #121212;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  flex-direction: column;
+}
+.start-btn {
+  padding: 14px 28px;
+  font-size: 1.3rem;
+  font-weight: 600;
+  background: #5ac8fa;
+  color: #121212;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.start-btn:hover {
+  background: #3eaee2;
+}
+
+/* Cacher / montrer */
+.hidden { display: none; }
+
+/* CHRONO */
+.timer {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  transition: color 0.3s;
+}
+
+/* === CONTAINERS === */
+.game-container,
+.result-container {
+  background: #1e1e1e69;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(90,200,250,0.2);
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+  margin-bottom: 20px;
+  backdrop-filter: blur(8px);
+}
+
+/* AFFICHAGE DES ÉMOJIS */
+.emoji-display {
+  font-size: clamp(2rem, 8vw, 3rem);
+  margin-bottom: 16px;
+}
+
+/* FORMULAIRE */
+.guess-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.guess-form input {
+  padding: 10px;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  background: #2c2c2c;
+  color: white;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+.guess-form input:focus {
+  outline: none;
+  border-color: #5ac8fa;
+}
+
+.guess-form button {
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: #5ac8fa;
+  color: #121212;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s;
+}
+
+.guess-form button:hover {
+  background: #3eaee2;
+}
+
+/* RÉSULTATS */
+.result-container h2 {
+  margin-top: 0;
+  font-size: 1.5rem;
+}
+
+#score-display {
+  font-size: 1.1rem;
+  margin: 8px 0;
+}
+
+.results-list {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.result-item {
+  background: #2c2c2c;
+  padding: 12px;
+  border-radius: 8px;
+  text-align: left;
+}
+
+.result-item .emojis {
+  font-size: 1.8rem;
+  margin-bottom: 8px;
+}
+
+.result-item img {
+  width: 100%;
+  max-width: 180px;
+  display: block;
+  margin: 8px auto;
+  border-radius: 8px;
+}
+
+.result-item p {
+  margin: 8px 0 0;
+  font-size: 0.95rem;
+}
+
+#restart-btn {
+  margin-top: 16px;
+  padding: 10px;
+  width: 100%;
+  border: none;
+  border-radius: 8px;
+  background: #5ac8fa;
+  color: #121212;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s;
+}
+
+#restart-btn:hover {
+  background: #3eaee2;
+}
+
+/* === MEDIA QUERIES POUR PETITS ET GRANDS ÉCRANS === */
+
+/* Tablettes et petits desktops */
+@media (min-width: 480px) {
+  .game-container,
+  .result-container {
+    max-width: 400px;
+    padding: 25px;
+  }
+  .guess-form {
+    flex-direction: row;
+  }
+  .guess-form input {
+    font-size: 1.1rem;
+  }
+  .guess-form button {
+    font-size: 1.1rem;
+  }
+}
+
+/* Moyens écrans */
+@media (min-width: 768px) {
+  body {
+    padding: 20px;
+    justify-content: center;
+  }
+  .game-container,
+  .result-container {
+    max-width: 450px;
+  }
+  .emoji-display {
+    font-size: clamp(3rem, 6vw, 4rem);
+  }
+  .timer {
+    font-size: 1.7rem;
+    margin-bottom: 14px;
+  }
+}
+
+/* Grands écrans */
+@media (min-width: 1024px) {
+  .game-container,
+  .result-container {
+    max-width: 500px;
+  }
+  .emoji-display {
+    font-size: 4rem;
+  }
+  .timer {
+    font-size: 2rem;
+  }
+}
+
+/* Masquer / montrer */
+.hidden { display: none; }
+
+/* Bouton « Voir le leaderboard » */
+.back-btn {
+  display: block;
+  margin: 12px auto;
+  padding: 10px 24px;
+  background: #f26856;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+.back-btn:hover {
+  background: #d14a40;
+  transform: translateY(-2px);
+}
+
+/* Points affichés à côté du film */
+.result-item .points {
+  color: #5ac8fa;
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+.achievement-notif {
+  position: fixed;
+  bottom: 20%;
+  left: 50%;
+  transform: translateX(-50%) translateY(100%);
+  background: #3a404d;
+  color: white;
+  padding: 16px 24px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  opacity: 0;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  z-index: 1000;
+}
+.achievement-notif.visible {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+.achievement-notif p {
+  margin: 8px 0 0;
+  font-size: 0.9em;
+}
+
+.result-new-achievement {
+  background: rgba(90,200,250,0.1);
+  border: 1px solid #5ac8fa;
+  padding: 12px;
+  margin-bottom: 16px;
+  border-radius: 8px;
+  text-align: center;
+}
+.result-new-achievement button {
+  margin-top: 8px;
+  padding: 6px 12px;
+  background: #5ac8fa;
+  color: #121212;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.account-btn {
+  display: inline-block;
+  margin: 10px 5px;
+  padding: 10px 20px;
+  background: #5ac8fa;
+  color: #121212;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.account-btn:hover {
+  background: #3eaee2;
+  transform: translateY(-2px);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+div#result-container {
+    margin-top: 120px;
+}
+.game-rules {
+  background: #1e1e1e;
+  border: 2px solid #5ac8fa;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 30px;
+  text-align: center;
+  color: #fff;
+  box-shadow: 0 0 10px rgba(90, 200, 250, 0.2);
+}
+
+.game-rules h2 {
+  color: #5ac8fa;
+  margin-bottom: 12px;
+  font-size: 1.5rem;
+}
+
+.game-rules ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.game-rules li {
+  margin: 10px 0;
+  font-size: 1.1rem;
+}

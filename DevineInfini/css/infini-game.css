@@ -1,0 +1,342 @@
+/* infini-game.css */
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: #121212;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  padding: 10px;
+}
+
+.hidden { display: none !important; position: static !important; z-index: -1 !important; } 
+
+.start-screen {
+  position: fixed;
+  inset: 0;
+  background: #121212;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  flex-direction: column;
+}
+
+.start-btn {
+  padding: 14px 28px;
+  font-size: 1.3rem;
+  font-weight: 600;
+  background: #5ac8fa;
+  color: #121212;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.start-btn:hover {
+  background: #3eaee2;
+}
+
+.game-container,
+.result-container {
+  background: #1e1e1e69;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(90,200,250,0.2);
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+  margin-bottom: 20px;
+  backdrop-filter: blur(8px);
+  min-height: 870px;
+  min-width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.emoji-display {
+  font-size: clamp(2rem, 8vw, 3rem);
+  margin-bottom: 16px;
+}
+
+.poster-wrapper img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+.guess-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.guess-form input {
+  padding: 10px;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  background: #2c2c2c;
+  color: white;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+.guess-form input:focus {
+  outline: none;
+  border-color: #5ac8fa;
+}
+
+.guess-form button {
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: #5ac8fa;
+  color: #121212;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s;
+}
+
+.guess-form button:hover {
+  background: #3eaee2;
+}
+
+.combo-display {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #5ac8fa;
+  margin-bottom: 8px;
+}
+
+.streak-display {
+  font-size: 1rem;
+  color: #ff6666;
+  margin-bottom: 12px;
+}
+
+.result-container h2 {
+  font-size: 1.5rem;
+}
+
+#score {
+  font-size: 1.1rem;
+  margin: 8px 0 16px;
+}
+
+.result-item {
+  background: #2c2c2c;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.result-item img {
+  width: 100%;
+  max-width: 200px;
+  margin-top: 8px;
+  border-radius: 8px;
+}
+
+.result-item .points {
+  color: #5ac8fa;
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+.restart-btn {
+  margin-top: 16px;
+  padding: 10px;
+  width: 100%;
+  border: none;
+  border-radius: 8px;
+  background: #5ac8fa;
+  color: #121212;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.restart-btn:hover {
+  background: #3eaee2;
+}
+
+.feedback {
+  animation-duration: 0.4s;
+  animation-fill-mode: both;
+}
+
+.feedback.success {
+  animation-name: flashGreen;
+}
+
+.feedback.error {
+  animation-name: shakeRed;
+}
+
+@keyframes shakeRed {
+  10%, 90% { transform: translateX(-2px); }
+  20%, 80% { transform: translateX(4px); }
+  30%, 50%, 70% { transform: translateX(-6px); }
+  40%, 60% { transform: translateX(6px); }
+}
+
+@keyframes flashGreen {
+  from { background-color: rgba(0,255,0,0.2); }
+  to { background-color: transparent; }
+}
+
+@media (min-width: 768px) {
+  .emoji-display {
+    font-size: clamp(3rem, 6vw, 4rem);
+  }
+
+  .timer {
+    font-size: 1.7rem;
+  }
+}
+@keyframes shakeError {
+  10%, 90% { transform: translateX(-2px); }
+  20%, 80% { transform: translateX(4px); }
+  30%, 50%, 70% { transform: translateX(-6px); }
+  40%, 60% { transform: translateX(6px); }
+}
+
+.shake-error {
+  animation: shakeError 0.5s;
+}
+.game-rules {
+  background: #1e1e1e;
+  border: 2px solid #5ac8fa;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 30px;
+  text-align: center;
+  color: #fff;
+  box-shadow: 0 0 10px rgba(90, 200, 250, 0.2);
+}
+
+.game-rules h2 {
+  color: #5ac8fa;
+  margin-bottom: 12px;
+  font-size: 1.5rem;
+}
+
+.game-rules ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.game-rules li {
+  margin: 10px 0;
+  font-size: 1.1rem;
+}
+
+.hearts {
+  display: flex;
+  gap: 10px;
+  font-size: 24px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.heart {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.heart.lost {
+  opacity: 0.2;
+  transform: scale(0.8);
+}
+
+/* === Responsive « Mobile First » === */
+@media (max-width: 600px) {
+  /* Containers de jeu et résultat */
+  .game-container,
+  .result-container {
+   /* plus petit que l’écran */
+    min-width: auto;    /* supprime le min‐width fixe */
+    min-height: auto;   /* hauteur automatique */
+    padding: 20px;      /* un peu moins de padding */
+  }
+
+  /* Timer et combo un peu plus petits */
+  #timer {
+    font-size: 1.5rem;
+  }
+  .combo-display {
+    font-size: 1.1rem;
+  }
+
+  /* Emoji et poster adaptés */
+  .emoji-display {
+    font-size: clamp(1.5rem, 12vw, 2.5rem);
+  }
+  .poster-wrapper img {
+    max-height: 200px;
+    object-fit: contain;
+  }
+
+  /* Formulaire d’entrée */
+  .guess-form input,
+  .guess-form button {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+
+  /* Bouton démarrer et rejouer */
+  .start-btn,
+  .restart-btn {
+    font-size: 1.1rem;
+    padding: 12px 24px;
+  }
+
+  /* Cœur de vie plus petits */
+  .heart {
+    font-size: 20px;
+  }
+}
+
+/* === Tablette / petit écran paysage === */
+@media (min-width: 601px) and (max-width: 900px) {
+  .game-container,
+  .result-container {
+    max-width: 80%;
+    min-height: auto;
+    padding: 25px;
+  }
+  .emoji-display {
+    font-size: clamp(2rem, 10vw, 3rem);
+  }
+  #timer {
+    font-size: 1.7rem;
+  }
+}
+
+.account-btn {
+  display: inline-block;
+  margin: 10px 5px;
+  padding: 10px 20px;
+  background: #5ac8fa;
+  color: #121212;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.account-btn:hover {
+  background: #3eaee2;
+  transform: translateY(-2px);
+}
+
