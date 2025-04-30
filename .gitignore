@@ -1,0 +1,2 @@
+# Ne pas versionner les dépendances PHP
+/public_html/vendor/
