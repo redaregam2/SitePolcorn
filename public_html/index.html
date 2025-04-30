@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>POLCORN - Accueil</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/home-style.css">
+  <link rel="stylesheet" href="css/background.css">
+
+</head>
+<body>
+    
+    
+    <div class="gradient-background">
+  <div class="gradient-sphere sphere-1"></div>
+  <div class="gradient-sphere sphere-2"></div>
+  <div class="gradient-sphere sphere-3"></div>
+  <div class="glow"></div>
+  <div class="grid-overlay"></div>
+  <div class="noise-overlay"></div>
+  <div class="particles-container" id="particles-container"></div>
+</div>
+<div class="site-content">    
+  <div class="film-reel">
+    <img src="images/popcorn.png" alt="Bobine de cinéma">
+  </div>    
+  <!-- TICKET (demi visible à gauche) -->
+<div class="ticket-reel">
+  <img src="images/ticket.webp" alt="Ticket cinéma">
+</div>
+  
+    
+<div class="floating-background">
+  <img src="images/1" class="floating-icon" style="top: 10%; left: 20%;">
+  <img src="images/2" class="floating-icon" style="top: 70%; left: 80%;">
+  <img src="images/3" class="floating-icon" style="top: 50%; left: 40%;">
+  <img src="images/4" class="floating-icon" style="top: 30%; left: 70%;">
+  <img src="images/5" class="floating-icon" style="top: 15%; left: 60%;">
+  <img src="images/6" class="floating-icon" style="top: 80%; left: 30%;">
+</div>
+
+
+<header class="header">
+  <div class="logo">
+    <span class="logo-text">POLCORN</span>
+  </div>
+
+  <nav class="nav">
+    <ul class="nav-links">
+
+    <li><a href="/mes-jeux.php">Mes jeux</a></li>
+    <li><a href="#reseaux">Mes réseaux</a></li>
+          <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+  </nav>
+</header>
+
+<!-- Le vrai Side Menu pour mobile -->
+<div id="side-menu" class="side-menu">
+  <!-- Bouton Fermer -->
+  <button class="close-btn" id="close-btn" aria-label="Fermer le menu">×</button>
+
+  <!-- Menu stylé -->
+  <ul class="menu-list">
+
+    <li><a href="/mes-jeux.php">Mes jeux</a></li>
+    <li><a href="#reseaux">Mes réseaux</a></li>
+        <li><a href="#contact">Contact</a></li>
+  </ul>
+</div>
+
+
+
+<main class="main-content">
+  <section class="intro">
+    <h1>Bienvenue moi c'est POLCORN</h1>
+    <p>Découvre mon univers créatif et suis-moi sur mes réseaux sociaux.</p>
+  </section>
+
+  <section class="photo-section">
+    <img src="images/465937565_597664769261859_1723581337546927472_n.jpg" alt="Photo de Polcorn" class="profil-photo">
+  </section>
+
+  <section id="reseaux" class="social-links">
+  <h2>Mes Réseaux</h2>
+  <div class="social-buttons">
+    <a href="https://www.instagram.com/pol.corn/" target="_blank" class="social-btn">
+      <img src="images/instagram-icon.svg" alt="Instagram" class="social-icon">
+      Instagram
+    </a>
+    <a href="https://www.tiktok.com/@pol.corn/" target="_blank" class="social-btn">
+      <img src="images/tiktok-icon.svg" alt="TikTok" class="social-icon">
+      TikTok
+    </a>
+  </div>
+</section>
+
+
+  <section id="contact" class="contact-section">
+    <h2>Contact</h2>
+    <p>Tu peux me contacter :</p>
+    <a href="mailto:contact@polcorn.com" class="contact-email">contact@polcorn.com</a>
+  </section>
+</main>
+
+<script>
+  const menuToggle = document.getElementById('menu-toggle');
+  const sideMenu   = document.getElementById('side-menu');
+  const closeBtn   = document.getElementById('close-btn');
+
+  menuToggle.addEventListener('click', () => {
+    sideMenu.classList.toggle('open');
+  });
+
+  closeBtn.addEventListener('click', () => {
+    sideMenu.classList.remove('open');
+  });
+</script>
+<script>
+  if (window.innerWidth <= 768) {
+    // Fonction qui calcule et applique translate+rotate
+    const setupParallax = selector => {
+      const container = document.querySelector(selector);
+      if (!container) return null;
+      const img     = container.querySelector('img');
+      const cH      = container.clientHeight;
+      const iH      = img.clientHeight;
+      const maxMove = iH - cH;
+      const maxRot  = 20;
+      return { img, maxMove, maxRot };
+    };
+
+    const film   = setupParallax('.film-reel');
+    const ticket = setupParallax('.ticket-reel');
+
+    const applyParallax = () => {
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      const frac       = (scrollable > 0) ? window.scrollY / scrollable : 0;
+      [film, ticket].forEach(item => {
+        if (!item) return;
+        const ty  = item.maxMove * (1 - frac);        //  at load: maxMove, at bottom: 0
+        const rt  = (1 - 2 * frac) * item.maxRot;     //  at load: +maxRot, at bottom: –maxRot
+        item.img.style.transform = `translateY(${ty}px) rotate(${rt}deg)`;
+      });
+    };
+
+    // Appliquer immédiatement au chargement
+    applyParallax();
+    // Et à chaque scroll ensuite
+    window.addEventListener('scroll', applyParallax);
+  }
+</script>
+
+
+
+
+</div>
+
+<script src="js/background.js"></script>
+</body>
+</html>

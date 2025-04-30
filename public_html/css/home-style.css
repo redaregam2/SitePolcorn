@@ -1,0 +1,400 @@
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: #121212;
+  color: white;
+  text-align: center;
+}
+
+
+.side-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 250px;
+  height: 100%;
+  background-color: #1e1e1e;
+  box-shadow: -2px 0 10px rgba(0,0,0,0.5);
+  display: flex;
+  flex-direction: column;
+  padding: 60px 20px;
+  transform: translateX(100%); /* caché au départ */
+  transition: transform 0.4s ease;
+  z-index: 2000;
+}
+.side-menu.open {
+  transform: translateX(0); /* visible quand on ajoute la classe "open" */
+}
+
+
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    display: flex
+;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background: #0000006e;
+    box-shadow: 0 2px 8px rgba(90, 200, 250, 0.1);
+    border-radius: 0px 0px 15px 15px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-text {
+  font-size: 30px;
+  font-weight: 700;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.nav ul {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav ul li a {
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+.nav ul li a:hover {
+  color: #5ac8fa;
+}
+
+.menu-toggle {
+  display: none;
+  font-size: 32px;
+  color: white;
+  cursor: pointer;
+}
+
+/* Partie principale */
+
+.main-content {
+  padding: 60px 20px;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.intro h1 {
+  font-size: 48px;
+  margin-bottom: 10px;
+}
+
+.intro p {
+  font-size: 20px;
+  color: #aaaaaa;
+  margin-bottom: 40px;
+}
+
+.photo-section {
+  margin: 40px 0;
+}
+
+.profil-photo {
+  max-width: 250px;
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+      position: relative;
+}
+
+.social-links {
+  margin-top: 60px;
+}
+
+.social-links h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.social-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.social-btn {
+  background: white;
+  color: #121212;
+  padding: 12px 24px;
+  font-size: 18px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.3s, color 0.3s;
+}
+
+.social-btn:hover {
+  background: #5ac8fa;
+  color: #121212;
+}
+
+.contact-section {
+  margin-top: 60px;
+}
+
+.contact-section h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.contact-email {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 20px;
+  color: #5ac8fa;
+  text-decoration: none;
+}
+
+.contact-email:hover {
+  text-decoration: underline;
+}
+
+.social-btn {
+  background: white;
+  color: #121212;
+  padding: 12px 24px;
+  font-size: 18px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: background 0.3s, color 0.3s;
+}
+
+.social-btn img.social-icon {
+  width: 20px;   /* Taille uniforme */
+  height: 20px;  /* Taille uniforme */
+  object-fit: contain; /* Garde le bon ratio */
+}
+
+
+
+
+
+.floating-background {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.floating-icon {
+  position: absolute;
+  height: 150px;
+  object-fit: contain;
+  opacity: 0.15;
+  animation: float1 25s ease-in-out infinite alternate;
+}
+
+/* Animation principale */
+@keyframes float1 {
+  0% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-80px) translateX(60px) rotate(8deg);
+  }
+  100% {
+    transform: translateY(0px) translateX(0px) rotate(-5deg);
+  }
+}
+
+/* On peut varier certaines flottantes pour plus de vie */
+.floating-background img:nth-child(2) {
+  animation: float2 30s ease-in-out infinite alternate;
+}
+.floating-background img:nth-child(3) {
+  animation: float3 22s ease-in-out infinite alternate;
+}
+.floating-background img:nth-child(4) {
+  animation: float4 28s ease-in-out infinite alternate;
+}
+.floating-background img:nth-child(5) {
+  animation: float2 26s ease-in-out infinite alternate;
+}
+.floating-background img:nth-child(6) {
+  animation: float3 24s ease-in-out infinite alternate;
+}
+
+/* Variantes pour avoir des mouvements différents */
+@keyframes float2 {
+  0% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-60px) translateX(-70px) rotate(-10deg);
+  }
+  100% {
+    transform: translateY(0px) translateX(0px) rotate(5deg);
+  }
+}
+
+@keyframes float3 {
+  0% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(100px) translateX(-50px) rotate(12deg);
+  }
+  100% {
+    transform: translateY(0px) translateX(0px) rotate(-7deg);
+  }
+}
+
+@keyframes float4 {
+  0% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-90px) translateX(80px) rotate(5deg);
+  }
+  100% {
+    transform: translateY(0px) translateX(0px) rotate(-5deg);
+  }
+}
+
+@media (max-width: 768px) {
+  .nav .nav-links {
+    display: none;
+  }
+  .menu-toggle {
+    display: block;
+  }
+}
+
+
+
+/* --- Bouton Fermer (la croix) --- */
+.side-menu .close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  font-size: 28px;
+  color: white;
+  cursor: pointer;
+  line-height: 1;
+  transition: color 0.2s;
+}
+.side-menu .close-btn:hover {
+  color: #5ac8fa;
+}
+
+/* --- Liste du menu --- */
+.menu-list {
+  list-style: none;
+  padding: 0;
+  margin: 60px 0 0 0; /* espace au-dessus sous la croix */
+}
+.menu-list li {
+  margin-bottom: 16px;
+}
+.menu-list li:last-child {
+  margin-bottom: 0;
+}
+
+/* --- Liens --- */
+.menu-list li a {
+  display: block;
+  padding: 12px 10px;
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 500;
+  border-radius: 6px;
+  transition: background 0.3s, color 0.3s;
+}
+.menu-list li a:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #5ac8fa;
+}
+
+
+/* by default on desktop, hide the reel */
+.film-reel {
+  display: none;
+}
+.ticket-reel {
+  display: none;
+}
+
+/* bobine uniquement sur mobile */
+@media (max-width: 768px) {
+  .film-reel {
+    display: block;
+    position: fixed;
+            bottom: 0vh;
+    right: -75px;
+    width: 130px;
+    height: 100vh;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 500;
+    
+  }
+
+  .film-reel img {
+    position: absolute;   /* ancré dans le container */
+    bottom: 0;             /* toute petite bobine part du bas */
+    left: 0;
+    height: 10vh;          /* taille réduite spécifiée */
+    width: auto;
+    transform: translateY(0);
+    will-change: transform;
+    user-select: none;
+    pointer-events: none;
+  }
+  
+    /* — Ticket reel à gauche — */
+  .ticket-reel {
+    display: block;
+    position: fixed;
+    bottom: 0vh;        /* commence sous l'écran */
+    left: -25px;          /* moitié de la largeur hors écran */
+    width: 150px;         /* largeur totale du container */
+    height: 100vh;        /* plein écran hauteur */
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 500;
+  }
+
+  .ticket-reel img {
+    position: absolute;
+    bottom: 0;            /* ancré en bas du container */
+    left: 0;              /* coin gauche */
+    height: 10vh;         /* même dimension que la bobine */
+    width: auto;
+    transform: translateY(0);
+    will-change: transform;
+    user-select: none;
+    pointer-events: none;
+  }
+
+}
+

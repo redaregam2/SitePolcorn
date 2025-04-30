@@ -1,0 +1,131 @@
+/* GLOBAL */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: #121212;
+  color: white;
+}
+
+
+
+/* MAIN */
+.main-content {
+  padding: 40px 20px;
+  max-width: 1000px;
+  margin: 60px auto;
+  text-align: center;
+}
+
+.main-content h1 {
+  font-size: 36px;
+  margin-bottom: 40px;
+}
+
+/* CARDS */
+.games-container {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.game-card {
+    background: #1e1e1e69;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(90, 200, 250, 0.2);
+    padding: 20px;
+    width: 280px;
+    display: flex
+;
+    flex-direction: column;
+    align-items: center;
+    backdrop-filter: blur(8px);
+}
+
+.game-thumb {
+  width: 100%;
+  aspect-ratio: 1 / 1;     /* force un ratio 1:1 */
+  object-fit: cover;       /* remplit le carré sans déformer */
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+
+.game-card h2 {
+  font-size: 20px;
+  margin: 0 0 20px;
+}
+
+.play-btn {
+  padding: 12px 24px;
+  background: #5ac8fa;
+  color: #121212;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: background 0.3s;
+}
+
+.play-btn:hover {
+  background: #3eaee2;
+}
+
+/* RESPONSIVE */
+@media (max-width: 640px) {
+  .games-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .game-card {
+    width: 90%;
+    max-width: 320px;
+  }
+}
+
+
+.submit-section {
+  margin-top: 60px;
+  padding: 40px 20px;
+  background: #1e1e1e69;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(90, 200, 250, 0.15);
+  backdrop-filter: blur(8px);
+}
+
+.submit-section h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #5ac8fa;
+}
+
+.submit-section p {
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+  color: #ccc;
+}
+
+.submit-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.submit-btn {
+  background: linear-gradient(135deg, #5ac8fa, #3eaee2);
+  color: #121212;
+  text-decoration: none;
+  padding: 14px 24px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 0 12px rgba(90, 200, 250, 0.6);
+}
+
+.submit-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 20px rgba(90, 200, 250, 0.9);
+}
+

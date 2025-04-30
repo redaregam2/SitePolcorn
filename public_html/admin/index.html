@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Dashboard – POLCORN</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link
+    href="https://fonts.googleapis.com/css?family=Poppins:400,600&display=swap"
+    rel="stylesheet"
+  >
+  <link rel="stylesheet" href="css/dashboard.css">
+  <script src="js/dashboard-stats.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+<body>
+  <header class="header">
+    <div class="logo-text">ADMIN DASHBOARD</div>
+  </header>
+
+  <main class="main-content">
+    <h1>Gestion des jeux</h1>
+    <div class="cards">
+  <!-- Devine le film -->
+  <a href="/devine-le-film/admin.php" class="card">
+    <img src="/images/thumb-posters.png" class="card-thumb" alt="">
+    <h2>Devine le film</h2>
+    <button class="card-btn">Gérer</button>
+    <div class="game-stats" id="stats-affiche">Chargement…</div>
+  </a>
+
+  <!-- Devine avec émojis -->
+  <a href="/devine-le-film-emoji/emoji_admin.php" class="card">
+    <img src="/images/thumb-emoji.png" class="card-thumb" alt="">
+    <h2>Devine avec émojis</h2>
+    <button class="card-btn">Gérer</button>
+    <div class="game-stats" id="stats-emoji">Chargement…</div>
+  </a>
+
+</div>
+<div class="suggestions-card">
+  <a href="/admin/suggestions.php">
+    <h2 id="suggestions-count">Chargement…</h2>
+    <button class="card-btn">Gérer les suggestions</button>
+  </a>
+</div>
+
+
+  </main>
+  
+<script>
+fetch('stats.json')
+  .then(r => r.json())
+  .then(s => {
+    // calcule le total de chaque jeu
+    const total = obj => Object.values(obj).reduce((a,b) => a + b, 0);
+    document.getElementById('stats-affiche').textContent =
+      `Total lancements : ${total(s.devine_affiche)}`;
+    document.getElementById('stats-emoji').textContent =
+      `Total lancements : ${total(s.devine_emoji)}`;
+  })
+  .catch(() => {
+    document.querySelectorAll('.game-stats')
+      .forEach(el => el.textContent = 'Stats indisponibles');
+  });
+</script>
+
+<section class="charts">
+  <h2>Statistiques journalières</h2>
+  <div class="date-filters">
+  <label>Du : <input type="date" id="start-date"></label>
+  <label>Au : <input type="date" id="end-date"></label>
+</div>
+
+  <div class="chart-container">
+    <canvas id="chart-affiche"></canvas>
+  </div>
+  <div class="chart-container">
+    <canvas id="chart-emoji"></canvas>
+  </div>
+</section>
+
+</body>
+</html>

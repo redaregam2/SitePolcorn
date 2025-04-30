@@ -1,0 +1,133 @@
+[
+    {
+        "emojis": [
+            "\ud83e\udd2e",
+            "\ud83d\udc79",
+            "\u271d\ufe0f"
+        ],
+        "answer": "L'exorciste",
+        "poster": "uploads\/emo_680e5cc784450.webp",
+        "aliases": [
+            "l'exorciste"
+        ],
+        "genre": "Horreur",
+        "difficulty": "Facile"
+    },
+    {
+        "emojis": [
+            "\ud83e\udd81",
+            "\ud83d\udc51",
+            "\ud83d\udc12"
+        ],
+        "answer": "Le Roi Lion",
+        "poster": "uploads\/emo_680ea9d91ddf2.webp",
+        "aliases": [],
+        "genre": "Animation",
+        "difficulty": "Facile"
+    },
+    {
+        "emojis": [
+            "\ud83d\udc78",
+            "\u2744\ufe0f",
+            "\u2603\ufe0f"
+        ],
+        "answer": "La Reine Des Neiges",
+        "poster": "uploads\/emo_680ed3a79cc34.webp",
+        "aliases": [],
+        "genre": "Animation",
+        "difficulty": "Facile"
+    },
+    {
+        "emojis": [
+            "\ud83e\udd13",
+            "\ud83d\udd77",
+            "\ud83e\udd18"
+        ],
+        "answer": "Spider-Man",
+        "poster": "uploads\/emo_680ed4b2cc14c.jpeg",
+        "aliases": [
+            "Spider man",
+            "Spiderman"
+        ],
+        "genre": "SF",
+        "difficulty": "Normal"
+    },
+    {
+        "emojis": [
+            "\ud83d\udc7d",
+            "\ud83d\udcde",
+            "\ud83c\udfe0"
+        ],
+        "answer": "E.T",
+        "poster": "uploads\/emo_680ed53ab408f.jpeg",
+        "aliases": [
+            "Et"
+        ],
+        "genre": "SF",
+        "difficulty": "Normal"
+    },
+    {
+        "emojis": [
+            "\ud83d\udc69",
+            "\ud83d\udec0",
+            "\ud83d\udd2a"
+        ],
+        "answer": "Psychose",
+        "poster": "uploads\/emo_680ed59137065.webp",
+        "aliases": [],
+        "genre": "Horreur",
+        "difficulty": "Normal"
+    },
+    {
+        "emojis": [
+            "\ud83c\udf88",
+            "\ud83c\udf88",
+            "\ud83c\udfe0"
+        ],
+        "answer": "L\u00e0-haut",
+        "poster": "uploads\/emo_680ed5e7a234f.jpeg",
+        "aliases": [
+            "La haut"
+        ],
+        "genre": "Animation",
+        "difficulty": "Facile"
+    },
+    {
+        "emojis": [
+            "\ud83d\udc8d",
+            "\ud83d\udc41",
+            "\ud83e\uddd9"
+        ],
+        "answer": "Le seigneur des anneaux",
+        "poster": "uploads\/emo_680ed65cf0515.jpeg",
+        "aliases": [
+            "la communaut\u00e9 de l'anneau"
+        ],
+        "genre": "Action",
+        "difficulty": "Facile"
+    },
+    {
+        "emojis": [
+            "\ud83e\uddc0",
+            "\ud83d\udc00",
+            "\ud83c\uddeb"
+        ],
+        "answer": "Ratatouille",
+        "poster": "uploads\/emo_680ed6fd3d225.jpeg",
+        "aliases": [],
+        "genre": "Animation",
+        "difficulty": "Facile"
+    },
+    {
+        "emojis": [
+            "\ud83e\uddf8",
+            "\ud83c\udf7b",
+            "\ud83d\udd1e"
+        ],
+        "answer": "TED",
+        "poster": "uploads\/emo_680ed7b437cce.webp",
+        "aliases": [],
+        "genre": "Com\u00e9die",
+        "difficulty": "Normal"
+    }
+]
