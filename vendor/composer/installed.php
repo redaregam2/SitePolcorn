@@ -3,7 +3,7 @@
         'name' => 'sitepolcorn/project',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'c3f2d216aebd723f94aa2fd1e7447f37773131e2',
+        'reference' => '8956431865b500c1369912816e1d3fe65d8c1921',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -31,7 +31,7 @@
         'sitepolcorn/project' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'c3f2d216aebd723f94aa2fd1e7447f37773131e2',
+            'reference' => '8956431865b500c1369912816e1d3fe65d8c1921',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
