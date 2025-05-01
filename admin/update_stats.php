@@ -13,9 +13,9 @@ if (!file_exists($statsFile)) {
 $stats = json_decode(file_get_contents($statsFile), true);
 
 $game = $_REQUEST['game'] ?? '';
-if (!in_array($game, ['devine_affiche','devine_emoji'])) {
+if (!in_array($game, ['devine_affiche', 'devine_emoji', 'devine_infini'])) {
     http_response_code(400);
-    echo json_encode(['ok'=>false,'error'=>'Jeu non reconnu']);
+    echo json_encode(['ok' => false, 'error' => 'Jeu non reconnu']);
     exit;
 }
 

@@ -72,6 +72,8 @@ fetch('/admin/count_suggestions.php')
       `Lancements : ${sumInRange(rawStats.devine_affiche)}`;
     document.getElementById('stats-emoji').textContent =
       `Lancements : ${sumInRange(rawStats.devine_emoji)}`;
+    document.getElementById('stats-infini').textContent =
+      `Lancements : ${sumInRange(rawStats.devine_infini)}`;
 
     // Mise à jour des graphiques
     updateChart(chartA,   rawStats.devine_affiche, dates);

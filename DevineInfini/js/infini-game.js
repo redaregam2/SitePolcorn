@@ -73,6 +73,13 @@ document.addEventListener('DOMContentLoaded', () => {
   }).catch(err => alert('Erreur chargement JSON : ' + err));
 
   startBtn.addEventListener('click', () => {
+    // Enregistrer le lancement du jeu
+    fetch('/admin/update_stats.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: 'game=devine_infini'
+    }).catch(() => {});
+
     startScreen.style.display = 'none';
     startScreen.classList.add('hidden');
     gameContainer.classList.remove('hidden');
