@@ -4,8 +4,14 @@ error_reporting(E_ALL);
 session_start();
 
 // 1) Connexion à la base
-$db = new PDO('mysql:host=localhost;dbname=polcorn;charset=utf8',
-              'u714302964_reda','Inzoumouda123*');
+$config = require __DIR__ . '/../../config.php';
+
+$db = new PDO(
+    "mysql:host={$config['db_host']};dbname={$config['db_name']};charset=utf8",
+    $config['db_user'],
+    $config['db_pass'],
+    [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
+);
 
 // 2) Récupère et valide
 $email = filter_input(INPUT_POST,'email',FILTER_VALIDATE_EMAIL);
