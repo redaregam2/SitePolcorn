@@ -1,0 +1,31 @@
+name: Sync main → deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  update-deploy-branch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # nécessaire pour avoir tout l’historique
+
+      - name: Split public_html into deploy branch
+        run: |
+          # Configure un user pour le commit
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Crée une ref temporaire qui contient uniquement public_html
+          REF=$(git subtree split --prefix public_html HEAD)
+
+          # Force-push cette ref sur la branche deploy
+          git push --force origin $REF:deploy
+
+        env:
+          # le token fourni automatiquement par GitHub pour authentifier le push
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
