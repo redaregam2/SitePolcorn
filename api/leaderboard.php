@@ -2,10 +2,7 @@
 header('Content-Type: application/json');
 session_start();
 
-$dbHost     = 'localhost';
-$dbName     = 'u714302964_polcorn_db';
-$dbUser     = 'u714302964_reda';
-$dbPassword = 'Inzoumouda123*';
+$config = require __DIR__ . '/../../config.php';
 
 // Vérifie que 'game' est fourni
 if (!isset($_GET['game']) || !in_array($_GET['game'], ['devine_affiche', 'devine_emoji', 'devine_infini'])) {
@@ -18,9 +15,9 @@ $game = $_GET['game'];
 
 try {
     $db = new PDO(
-        "mysql:host=$dbHost;dbname=$dbName;charset=utf8mb4",
-        $dbUser,
-        $dbPassword,
+        "mysql:host={$config['db_host']};dbname={$config['db_name']};charset=utf8mb4",
+        $config['db_user'],
+        $config['db_pass'],
         [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
     );
 } catch (PDOException $e) {

@@ -1,4 +1,12 @@
 <?php
+$config = require __DIR__ . '/../../config.php';
+$db = new PDO(
+    "mysql:host={$config['db_host']};dbname={$config['db_name']};charset=utf8",
+    $config['db_user'],
+    $config['db_pass'],
+    [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
+);
+
 // CONFIG
 $uploadDir    = __DIR__ . '/uploads/';
 $jsonFile     = __DIR__ . '/emoji_games.json';

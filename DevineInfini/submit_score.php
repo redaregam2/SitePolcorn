@@ -28,8 +28,13 @@ if ($game !== 'devine_infini' || $score < 0) {
 
 // 🔁 Enregistrement en base de données
 try {
-    $pdo = new PDO('mysql:host=localhost;dbname=u714302964_polcorn_db;charset=utf8mb4', 'u714302964_reda', 'Inzoumouda123*');
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $config = require __DIR__ . '/../../config.php';
+    $pdo = new PDO(
+        "mysql:host={$config['db_host']};dbname={$config['db_name']};charset=utf8mb4",
+        $config['db_user'],
+        $config['db_pass'],
+        [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
+    );
 
     // Insère score dans la table
     $stmt = $pdo->prepare("INSERT INTO scores (user_id, game, score) VALUES (?, ?, ?)");
