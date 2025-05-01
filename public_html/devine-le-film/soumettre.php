@@ -3,12 +3,29 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-// Connexion BD
-$db = new PDO(
-    'mysql:host=localhost;dbname=u714302964_polcorn_db;charset=utf8',
-    'u714302964_reda', 'Inzoumouda123*',
-    [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
-);
+// Inclure le fichier de configuration
+$config = require __DIR__ . '/../../config.php';
+
+// Initialiser PDO
+try {
+    $pdo = new PDO(
+        "mysql:host={$config['db_host']};dbname={$config['db_name']};charset=utf8mb4",
+        $config['db_user'],
+        $config['db_pass'],
+        [
+            PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+        ]
+    );
+} catch (PDOException $e) {
+    // Gestion des erreurs
+    if (preg_match('#^(localhost|127\.0\.0\.1)#', $_SERVER['HTTP_HOST'] ?? php_uname('n'))) {
+        die("Erreur de connexion à la base (local) : " . $e->getMessage());
+    } else {
+        error_log("DB prod error: " . $e->getMessage());
+        die("Impossible de se connecter à la base de données.");
+    }
+}
 
 // Genres et Difficultés
 $genres = ['Drame', 'Comédie', 'Action', 'SF', 'Horreur', 'Animation', 'Documentaire'];
@@ -40,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($ok1 && $ok2) {
             // Enregistre la suggestion
-            $stmt = $db->prepare("
+            $stmt = $pdo->prepare("
                 INSERT INTO suggestions (type, `before`, `after`, answer, genre, difficulty, aliases)
                 VALUES ('affiche', :before, :after, :answer, :genre, :difficulty, :aliases)
             ");
