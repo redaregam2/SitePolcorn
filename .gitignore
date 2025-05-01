@@ -1,2 +1,4 @@
 # Ne pas versionner les dépendances PHP
 /public_html/vendor/
+# Fichier d’environnement (ne pas versionner)
+.env

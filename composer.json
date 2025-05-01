@@ -1,0 +1,13 @@
+{
+    "name": "sitepolcorn/project",
+    "description": "Site Polcorn",
+    "require": {
+        "vlucas/phpdotenv": "5.5"
+    },
+    "authors": [
+        {
+            "name": "TonNom",
+            "email": "reda.regam@gmail.com"
+        }
+    ]
+}
