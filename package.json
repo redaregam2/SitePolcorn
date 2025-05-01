@@ -1,0 +1,25 @@
+{
+  "name": "sitepolcorn",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "serve:php": "php -S localhost:8000 -t public_html",
+    "serve:bs":  "browser-sync start --config bs-config.js",
+    "dev":       "npm run serve:php & npm run serve:bs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/redaregam2/SitePolcorn.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/redaregam2/SitePolcorn/issues"
+  },
+  "homepage": "https://github.com/redaregam2/SitePolcorn#readme",
+  "description": "",
+  "devDependencies": {
+    "browser-sync": "^3.0.4"
+  }
+}
