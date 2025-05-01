@@ -6,8 +6,9 @@ date_default_timezone_set('Europe/Paris');
 $statsFile = __DIR__ . '/stats.json';
 if (!file_exists($statsFile)) {
     file_put_contents($statsFile, json_encode([
-        'devine_affiche'=>[],
-        'devine_emoji'=>[]
+        'devine_affiche' => [],
+        'devine_emoji'   => [],
+        'devine_infini'  => [] // Ajout pour le jeu infini
     ], JSON_PRETTY_PRINT));
 }
 $stats = json_decode(file_get_contents($statsFile), true);
