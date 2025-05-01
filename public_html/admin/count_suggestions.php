@@ -2,11 +2,12 @@
 header('Content-Type: application/json');
 
 // Connexion BD
+$config = require __DIR__ . '/../../config.php';
 $db = new PDO(
-  'mysql:host=localhost;dbname=u714302964_polcorn_db;charset=utf8',
-  'u714302964_reda',
-  'Inzoumouda123*',
-  [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
+    "mysql:host={$config['db_host']};dbname={$config['db_name']};charset=utf8",
+    $config['db_user'],
+    $config['db_pass'],
+    [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
 );
 
 // Compte les suggestions

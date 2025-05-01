@@ -12,10 +12,12 @@ $correct    = (int)$_POST['correct'];
 $durationMs = (int)$_POST['duration_ms'];
 
 // 1) Connexion BD
+$config = require __DIR__ . '/../../config.php';
 $db = new PDO(
-  'mysql:host=localhost;dbname=u714302964_polcorn_db;charset=utf8mb4',
-  'u714302964_reda','Inzoumouda123*',
-  [PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION]
+    "mysql:host={$config['db_host']};dbname={$config['db_name']};charset=utf8mb4",
+    $config['db_user'],
+    $config['db_pass'],
+    [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
 );
 
 // 2) Enregistrer la session
