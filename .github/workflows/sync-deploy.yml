@@ -5,27 +5,31 @@ on:
     branches:
       - main
 
+# Autorise l’écriture sur le repo pour le GITHUB_TOKEN
+permissions:
+  contents: write
+
 jobs:
   update-deploy-branch:
     runs-on: ubuntu-latest
     steps:
+      # On récupère tout l’historique et on garde les creds pour le push HTTPS
       - name: Checkout main
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0  # nécessaire pour avoir tout l’historique
+          fetch-depth: 0
+          persist-credentials: true
 
-      - name: Split public_html into deploy branch
+      # Configure Git (nom + email) pour le commit de subtree
+      - name: Configure Git user
         run: |
-          # Configure un user pour le commit
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          # Crée une ref temporaire qui contient uniquement public_html
+      # Split du dossier public_html et push sur la branche deploy
+      - name: Split and push public_html to deploy
+        run: |
+          # Crée une ref temporaire ne contenant que public_html
           REF=$(git subtree split --prefix public_html HEAD)
-
-          # Force-push cette ref sur la branche deploy
+          # Force-push cette ref sur deploy en utilisant le token persistant
           git push --force origin $REF:deploy
-
-        env:
-          # le token fourni automatiquement par GitHub pour authentifier le push
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
