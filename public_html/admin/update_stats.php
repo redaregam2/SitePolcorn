@@ -20,11 +20,18 @@ if (!in_array($game, ['devine_affiche', 'devine_emoji', 'devine_infini'])) {
     exit;
 }
 
+// Assurez-vous que la clé du jeu est un objet associatif
+if (!isset($stats[$game]) || !is_array($stats[$game])) {
+    $stats[$game] = [];
+}
+
+// Incrémentez le compteur pour la date du jour
 $today = date('Y-m-d');
 if (!isset($stats[$game][$today])) {
     $stats[$game][$today] = 0;
 }
 $stats[$game][$today]++;
 
+// Sauvegarde dans stats.json
 file_put_contents($statsFile, json_encode($stats, JSON_PRETTY_PRINT));
-echo json_encode(['ok'=>true,'game'=>$game,'date'=>$today,'count'=>$stats[$game][$today]]);
+echo json_encode(['ok' => true, 'game' => $game, 'date' => $today, 'count' => $stats[$game][$today]]);
