@@ -76,15 +76,19 @@ fetch('/admin/count_suggestions.php')
       `Lancements : ${sumInRange(rawStats.devine_infini)}`;
 
     // Mise à jour des graphiques
-    updateChart(chartA,   rawStats.devine_affiche, dates);
-    updateChart(chartE,   rawStats.devine_emoji,   dates);
+    updateChart(chartA, rawStats.devine_affiche, dates);
+    updateChart(chartE, rawStats.devine_emoji, dates);
+    updateChart(chartI, rawStats.devine_infini, dates); // Mise à jour pour Devine Infini
   }
 
   // 5) Setup initial des charts (idem que précédemment)
   const ctxA = document.getElementById('chart-affiche').getContext('2d');
   const ctxE = document.getElementById('chart-emoji').getContext('2d');
-  const chartA = makeChart(ctxA, [], 'Devine le film',    'rgba(90,200,250,0.7)');
+  const ctxI = document.getElementById('chart-infini').getContext('2d'); // Nouveau graphique
+
+  const chartA = makeChart(ctxA, [], 'Devine le film', 'rgba(90,200,250,0.7)');
   const chartE = makeChart(ctxE, [], 'Devine aux émoticônes', 'rgba(250,100,150,0.7)');
+  const chartI = makeChart(ctxI, [], 'Devine Infini', 'rgba(255,159,64,0.7)'); // Nouveau graphique
 
   // factory Chart.js vide
   function makeChart(ctx, data, label, color) {
@@ -111,8 +115,7 @@ fetch('/admin/count_suggestions.php')
   // fonction pour mettre à jour un Chart existant
   function updateChart(chart, dataObj, dates) {
     chart.data.labels = dates;
-    chart.data.datasets[0].data =
-      dates.map(d => dataObj[d]||0);
+    chart.data.datasets[0].data = dates.map(d => dataObj[d] || 0);
     chart.update();
   }
 });
