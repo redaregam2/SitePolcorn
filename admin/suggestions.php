@@ -29,17 +29,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       if ($sugg['type'] === 'affiche') {
         // Ajouter dans films.json
         $jsonPath = __DIR__ . '/../devine-le-film/films.json';
+
+        // Charger le contenu du fichier JSON
         $films = json_decode(file_get_contents($jsonPath), true);
 
+        // S'assurer que $films est un tableau
+        if (!is_array($films)) {
+            $films = [];
+        }
+
+        // Ajouter la nouvelle suggestion
         $films[] = [
-          'before' => $sugg['before'],
-          'after' => $sugg['after'],
-          'answer' => $sugg['answer'],
-          'genre' => $sugg['genre'],
-          'difficulty' => $sugg['difficulty'],
-          'aliases' => array_filter(array_map('trim', explode(',', $sugg['aliases'] ?? '')))
+            'before' => $sugg['before'],
+            'after' => $sugg['after'],
+            'answer' => $sugg['answer'],
+            'genre' => $sugg['genre'],
+            'difficulty' => $sugg['difficulty'],
+            'aliases' => array_filter(array_map('trim', explode(',', $sugg['aliases'] ?? '')))
         ];
 
+        // Sauvegarder le contenu mis à jour dans le fichier JSON
         file_put_contents($jsonPath, json_encode($films, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
       }
       if ($sugg['type'] === 'emoji') {
