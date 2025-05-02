@@ -3,3 +3,4 @@
 # Fichier d’environnement (ne pas versionner)
 .env
 public_html/admin/stats.json
+*.json
