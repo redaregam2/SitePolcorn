@@ -28,6 +28,7 @@ try {
 }
 
 // Genres et Difficultés
+
 $genres = ['Drame', 'Comédie', 'Action', 'SF', 'Horreur', 'Animation', 'Documentaire'];
 $difficulties = ['Facile', 'Normal', 'Expert'];
 
