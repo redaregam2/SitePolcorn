@@ -14,7 +14,10 @@ if (!file_exists($statsFile)) {
 $stats = json_decode(file_get_contents($statsFile), true);
 
 $game = $_REQUEST['game'] ?? '';
+error_log("Game received: $game");
+
 if (!in_array($game, ['devine_affiche', 'devine_emoji', 'devine_infini'])) {
+    error_log("Invalid game: $game");
     http_response_code(400);
     echo json_encode(['ok' => false, 'error' => 'Jeu non reconnu']);
     exit;
@@ -31,6 +34,7 @@ if (!isset($stats[$game][$today])) {
     $stats[$game][$today] = 0;
 }
 $stats[$game][$today]++;
+error_log("Stats updated: " . json_encode($stats[$game]));
 
 // Sauvegarde dans stats.json
 file_put_contents($statsFile, json_encode($stats, JSON_PRETTY_PRINT));
