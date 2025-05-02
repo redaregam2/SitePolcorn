@@ -131,11 +131,18 @@
   ];
 
   let currentTrackIndex = 0;
-  const audio = new Audio(tracks[currentTrackIndex].src);
-  audio.loop = false; // Pas de boucle automatique
-  audio.volume = 0.5; // Volume initial à 50%
 
-  // Sélectionner les éléments pour les deux lecteurs
+  // Créer un AudioContext pour gérer le volume
+  const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+  const gainNode = audioContext.createGain();
+  const audio = new Audio(tracks[currentTrackIndex].src);
+  const track = audioContext.createMediaElementSource(audio);
+  track.connect(gainNode).connect(audioContext.destination);
+
+  audio.loop = false; // Pas de boucle automatique
+  gainNode.gain.value = 0.5; // Volume initial à 50%
+
+  // Sélectionner les éléments pour le lecteur
   const playPauseBtns = [document.getElementById('play-pause-btn'), document.getElementById('play-pause-btn-2')];
   const prevBtns = [document.getElementById('prev-btn'), document.getElementById('prev-btn-2')];
   const nextBtns = [document.getElementById('next-btn'), document.getElementById('next-btn-2')];
@@ -153,6 +160,7 @@
   // Lecture/Pause
   function togglePlayPause() {
     if (audio.paused) {
+      audioContext.resume(); // Nécessaire pour activer l'AudioContext sur iOS
       audio.play().then(() => {
         playPauseBtns.forEach(btn => {
           btn.classList.remove('fa-play');
@@ -207,29 +215,26 @@
     });
   }));
 
-  // Ajuster le volume
+  // Ajuster le volume via le GainNode
   volumeSliders.forEach(slider => slider.addEventListener('input', (e) => {
-    audio.volume = e.target.value;
+    gainNode.gain.value = e.target.value;
     volumeSliders.forEach(s => s.value = e.target.value); // Synchroniser les jauges
   }));
 
   // Lecture automatique au chargement
   window.addEventListener('load', () => {
-    // Synchroniser les jauges de volume avec le volume initial
     volumeSliders.forEach(slider => {
-      slider.value = audio.volume;
+      slider.value = gainNode.gain.value; // Synchroniser la jauge de volume
     });
 
     audio.play().then(() => {
       updateTrackInfo();
-      // Mettre à jour les icônes des boutons Play/Pause
       playPauseBtns.forEach(btn => {
         btn.classList.remove('fa-play');
         btn.classList.add('fa-pause');
       });
     }).catch(() => {
       console.warn("Lecture automatique bloquée par le navigateur.");
-      // Si la lecture automatique est bloquée, afficher l'icône Play
       playPauseBtns.forEach(btn => {
         btn.classList.remove('fa-pause');
         btn.classList.add('fa-play');
