@@ -429,3 +429,4 @@ function updateSlider(x, container, resize, handle) {
   resize.style.width = `${x}px`;
   handle.style.left = `${x}px`;
 }
+
