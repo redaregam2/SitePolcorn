@@ -1,4 +1,5 @@
 <?php
+error_log("Données reçues dans record_session.php : " . print_r($_POST, true));
 // /api/record_session.php
 session_start();
 if(empty($_SESSION['user']['id'])){
@@ -10,7 +11,7 @@ $game       = $_POST['game']       ?? '';
 $score      = (int)$_POST['score'];
 $correct    = (int)$_POST['correct'];
 $durationMs = (int)$_POST['duration_ms'];
-
+$currentCombo = isset($_POST['currentCombo']) ? (int)$_POST['currentCombo'] : 0;
 // 1) Connexion BD
 $config = require __DIR__ . '/../../config.php';
 $db = new PDO(
@@ -47,32 +48,59 @@ foreach($achs->fetchAll(PDO::FETCH_ASSOC) as $a){
   if($ck->fetch()) continue;
 
   $unlock = false;
-  if($a['threshold_type']=='boolean'){
-    switch($a['code']){
-      case 'fast_answer':
-        if($durationMs < 3000) $unlock = true; break;
-      case 'perfect_score':
-        if($correct == 10) $unlock = true; break;
-      case '500_points':
-        if($score >= 500) $unlock = true; break;
-      case 'top1':
-  $top = $db->prepare("
-    SELECT COUNT(*) FROM user_game_sessions
-    WHERE game_scope = :g AND score > :s
-  ");
-  $top->execute(['g'=>$game, 's'=>$score]);
-  $nbBetter = $top->fetchColumn();
-  if ($nbBetter == 0) $unlock = true;
-  break;
-
+  if ($a['game_scope'] === 'devine_infini') {
+    if ($a['threshold_type'] === 'boolean') {
+        switch ($a['code']) {
+            case 'combo_10':
+              error_log("Combo actuel : $currentCombo");
+                // Vérifie si le joueur a fait un combo de 10 bonnes réponses consécutives
+                if ($currentCombo >= 10) $unlock = true;
+                break;
+            case 'fast_answer':
+                if ($durationMs < 3000) $unlock = true;
+                break;
+            case '500_points':
+                if ($score >= 500) $unlock = true;
+                break;
+            case 'top1':
+                $top = $db->prepare("
+                    SELECT COUNT(*) FROM user_game_sessions
+                    WHERE game_scope = :g AND score > :s
+                ");
+                $top->execute(['g' => $game, 's' => $score]);
+                $nbBetter = $top->fetchColumn();
+                if ($nbBetter == 0) $unlock = true;
+                break;
+        }
     }
-  } else { // count
-    $cnt = $db->prepare("
+  } else {
+    if($a['threshold_type']=='boolean'){
+      switch($a['code']){
+        case 'fast_answer':
+          if($durationMs < 3000) $unlock = true; break;
+        case 'perfect_score':
+          if($correct == 10) $unlock = true; break;
+        case '500_points':
+          if($score >= 500) $unlock = true; break;
+        case 'top1':
+    $top = $db->prepare("
       SELECT COUNT(*) FROM user_game_sessions
-      WHERE user_id=:u AND game_scope=:g
+      WHERE game_scope = :g AND score > :s
     ");
-    $cnt->execute(['u'=>$userId,'g'=>$game]);
-    if($cnt->fetchColumn() >= $a['threshold_value']) $unlock = true;
+    $top->execute(['g'=>$game, 's'=>$score]);
+    $nbBetter = $top->fetchColumn();
+    if ($nbBetter == 0) $unlock = true;
+    break;
+
+      }
+    } else { // count
+      $cnt = $db->prepare("
+        SELECT COUNT(*) FROM user_game_sessions
+        WHERE user_id=:u AND game_scope=:g
+      ");
+      $cnt->execute(['u'=>$userId,'g'=>$game]);
+      if($cnt->fetchColumn() >= $a['threshold_value']) $unlock = true;
+    }
   }
 
   if($unlock){
