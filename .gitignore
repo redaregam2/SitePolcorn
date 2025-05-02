@@ -2,3 +2,4 @@
 /public_html/vendor/
 # Fichier d’environnement (ne pas versionner)
 .env
+public_html/admin/stats.json
