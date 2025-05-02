@@ -13,7 +13,7 @@ $db = new PDO(
 );
 
 // Config
-$genres       = ['Drame','Comédie','Action','SF','Horreur','Animation','Documentaire'];
+$genres = ['Drame', 'Comédie', 'Action', 'SF', 'Horreur', 'Animation', 'Documentaire', 'Fantastique', 'Thriller'];
 $difficulties = ['Facile','Normal','Expert'];
 $uploadDir    = __DIR__ . '/../uploads/';
 
