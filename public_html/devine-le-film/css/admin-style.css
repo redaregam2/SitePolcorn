@@ -156,3 +156,11 @@ h1, h2, h3 {
     align-items: center;
     height: 100vh;
 }
+
+
+
+@media (max-width: 768px) {
+    h1 {
+      font-size: 34px;
+  }
+  }
