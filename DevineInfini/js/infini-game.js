@@ -163,55 +163,84 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 function checkAnswer(timeout = false) {
- // Ne sortir que si le timer n'est pas running **et** qu'on n'est pas en timeout
- if (!timerRunning && !timeout) return;
-    timerRunning = false;
-    cancelAnimationFrame(timerFrame);
+  if (!timerRunning && !timeout) return;
+  timerRunning = false;
+  cancelAnimationFrame(timerFrame);
 
-    const guess = input.value.trim().toLowerCase();
-    const correct = currentGame.answer.trim().toLowerCase();
-    const aliases = Array.isArray(currentGame.aliases) ? currentGame.aliases.map(a => a.trim().toLowerCase()) : [];
+  const guess = input.value.trim().toLowerCase();
+  const correct = currentGame.answer.trim().toLowerCase();
+  const aliases = Array.isArray(currentGame.aliases) ? currentGame.aliases.map(a => a.trim().toLowerCase()) : [];
 
-    const isCorrect = !timeout && (guess === correct || aliases.includes(guess));
-    input.blur();
+  const isCorrect = !timeout && (guess === correct || aliases.includes(guess));
+  input.blur();
 
-    let basePts = 0;
-    if (isCorrect) {
-      const rem = TIME_PER_GAME_MS - (performance.now() - startTime);
-      basePts = Math.ceil((rem / TIME_PER_GAME_MS) * 100);
-    }
-    let bonusPts = combo * 10;
-    let totalPts = isCorrect ? basePts + bonusPts : 0;
+  // Calcul de la durée de la réponse
+  const responseDuration = performance.now() - startTime;
 
-    history.push({
-      ...currentGame,
-      isCorrect,
-      userGuess: guess,
-      points: totalPts,
-      status: isCorrect ? '✅' : '❌'
-    });
-
-    if (isCorrect) {
-      score += totalPts;
-      combo++;
-      streak++;
-      showFeedback(true);
-      showToast(`+${basePts} base +${bonusPts} combo`, totalPts);
-    } else {
-      errors++;
-      combo = 1;
-      streak = 0;
-      showFeedback(false);
-    }
-
-    updateDisplays();
-
-    if (errors >= MAX_ERRORS) {
-      setTimeout(showResults, 500);
-    } else {
-      setTimeout(loadNext, 600);
-    }
+  let basePts = 0;
+  if (isCorrect) {
+    const rem = TIME_PER_GAME_MS - responseDuration;
+    basePts = Math.ceil((rem / TIME_PER_GAME_MS) * 100);
   }
+  let bonusPts = combo * 10;
+  let totalPts = isCorrect ? basePts + bonusPts : 0;
+
+  history.push({
+    ...currentGame,
+    isCorrect,
+    userGuess: guess,
+    points: totalPts,
+    status: isCorrect ? '✅' : '❌',
+    responseDuration // Ajout de la durée de la réponse
+  });
+
+  if (isCorrect) {
+    score += totalPts;
+    combo++;
+    streak++;
+    showFeedback(true);
+    showToast(`+${basePts} base +${bonusPts} combo`, totalPts);
+
+    // Vérifiez si le combo atteint 10 et envoyez une requête au backend
+    if (combo === 10) {
+      fetch('/api/record_session.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({
+          game: 'devine_infini',
+          score,
+          correct: history.filter(h => h.isCorrect).length,
+          duration_ms: Math.min(...history.map(r => r.responseDuration)), // Durée minimale pour "Réponse éclair"
+          currentCombo: combo // Vérifiez que cette ligne est présente
+        })
+      })
+        .then(r => r.text()) // Changez .json() en .text() pour voir la réponse brute
+        .then(data => {
+          console.log('Réponse brute du backend :', data); // Affiche la réponse brute
+          const json = JSON.parse(data); // Convertissez en JSON après avoir vérifié la réponse
+          if (json.new_achievements && json.new_achievements.length) {
+            json.new_achievements.forEach(a => {
+              showAchievementNotif(a.name, a.description);
+            });
+          }
+        })
+        .catch(err => console.error('Erreur lors de la requête :', err));
+    }
+  } else {
+    errors++;
+    combo = 1; // Réinitialisation du combo en cas d'erreur
+    streak = 0;
+    showFeedback(false);
+  }
+
+  updateDisplays();
+
+  if (errors >= MAX_ERRORS) {
+    setTimeout(showResults, 500);
+  } else {
+    setTimeout(loadNext, 600);
+  }
+}
 
   function updateDisplays() {
     comboDisplay.textContent = `Combo x${combo}`;
@@ -332,9 +361,26 @@ if (userStatus.logged_in) {
           game: 'devine_infini',
           score,
           correct: history.filter(h => h.isCorrect).length,
-          duration_ms: TIME_PER_GAME_MS * history.length
+          duration_ms: Math.min(...history.map(r => r.responseDuration)), // Durée minimale pour "Réponse éclair"
+          currentCombo: combo
         })
-      }).catch(console.error);
+      })
+        .then(r => r.json())
+        .then(data => {
+          console.log('Données envoyées au backend :', {
+            game: 'devine_infini',
+            score,
+            correct: history.filter(h => h.isCorrect).length,
+            duration_ms: Math.min(...history.map(r => r.responseDuration)),
+            currentCombo: combo
+          });
+          if (data.new_achievements && data.new_achievements.length) {
+            data.new_achievements.forEach(a => {
+              showAchievementNotif(a.name, a.description);
+            });
+          }
+        })
+        .catch(console.error);
     } else {
       pseudoForm.innerHTML = `
         <p>Connectez-vous pour enregistrer votre score :</p>

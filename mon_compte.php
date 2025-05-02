@@ -66,7 +66,8 @@ foreach($unlocked as $a){
 // Légendes pour chaque scope
 $scopeLabels = [
   'devine_affiche' => 'Devine le film sans le titre',
-  'devine_emoji'   => 'Devine le film aux émojis'
+  'devine_emoji'   => 'Devine le film aux émojis',
+  'devine_infini'  => 'Devine Infini'
 ];
 ?>
 <!DOCTYPE html>
