@@ -12,9 +12,9 @@ if (session_status() === PHP_SESSION_NONE) {
       <li class="dropdown">
         <a href="#" class="dropdown-toggle">Classement ▾</a>
         <ul class="dropdown-menu">
-          <li><a href="/devine-le-film/leaderboard.php">Devine sans le titre</a></li>
-          <li><a href="/devine-le-film-emoji/leaderboard.php">Devine avec emojis</a></li>
-          <li><a href="/DevineInfini/leaderboard-infini.php">Devine Infini</a></li>
+        <li><a href="/devine-le-film/leaderboard.php">🎥 Devine sans le titre</a></li>
+            <li><a href="/devine-le-film-emoji/leaderboard.php">😊 Devine avec emojis</a></li>
+            <li><a href="/DevineInfini/leaderboard-infini.php">♾️ Devine Infini</a></li>
         </ul>
       </li>
     </ul>
@@ -48,9 +48,9 @@ if (session_status() === PHP_SESSION_NONE) {
       <li class="dropdown">
         <a href="#" class="dropdown-toggle">Classement ▾</a>
         <ul class="dropdown-menu">
-          <li><a href="/devine-le-film/leaderboard.php">Devine sans le titre</a></li>
-          <li><a href="/devine-le-film-emoji/leaderboard.php">Devine avec emojis</a></li>
-          <li><a href="/DevineInfini/leaderboard-infini.php">Devine Infini</a></li>
+            <li><a href="/devine-le-film/leaderboard.php">🎥 Devine sans le titre</a></li>
+            <li><a href="/devine-le-film-emoji/leaderboard.php">😊 Devine avec emojis</a></li>
+            <li><a href="/DevineInfini/leaderboard-infini.php">♾️ Devine Infini</a></li>
         </ul>
       </li>
     </ul>
@@ -200,6 +200,7 @@ burgerMenu.addEventListener('click', () => {
   padding: 8px 0;
   display: none;
   z-index: 999;
+  list-style: none;
 }
 
 .nav-links .dropdown:hover .dropdown-menu {
@@ -336,6 +337,7 @@ hr {
   position: relative;
   overflow: hidden;
   animation: pulse 2s infinite;
+  align-self: flex-start;
 }
 
 /* Hover */
@@ -464,7 +466,7 @@ hr {
   height: 100vh;
       background: #1e1e1ef7;
   box-shadow: 2px 0 12px rgba(90,200,250,0.4);
-  padding: 60px 20px;
+  padding-top: 50px;
   display: flex!important;
   flex-direction: column;
   gap: 20px;
@@ -495,6 +497,9 @@ hr {
   left: 0;
 }
 
+.side-menu a:nth-child(1) {
+    margin-left: 20px;
+}
 /* --- Affiche burger uniquement en mobile --- */
 @media (max-width: 768px) {
   .burger-menu {
