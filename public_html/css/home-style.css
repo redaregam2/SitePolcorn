@@ -32,13 +32,14 @@ body {
     top: 0;
     z-index: 999;
     display: flex
-;
+;backdrop-filter: blur(8px);
     justify-content: space-between;
     align-items: center;
     padding: 20px 40px;
     background: #0000006e;
     box-shadow: 0 2px 8px rgba(90, 200, 250, 0.1);
     border-radius: 0px 0px 15px 15px;
+    border:1px solid #5ac7fa65
 }
 
 .logo {
@@ -398,3 +399,86 @@ body {
 
 }
 
+/* CTA Section */
+.cta-section {
+  text-align: center;
+  margin: 50px 0;
+  padding: 30px;
+  background: linear-gradient(135deg, #1e1e1e47, #1212123f); /* Couleurs sobres */
+  backdrop-filter: blur(8px);
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); /* Ombre subtile */
+  color: white;
+}
+
+.cta-section h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.cta-section p {
+  font-size: 16px;
+  margin-bottom: 20px;
+  color: #aaaaaa; /* Texte légèrement atténué */
+}
+
+/* Bouton CTA avec animation */
+/* Bouton CTA avec animation de secousse verticale */
+.cta-button {
+  display: inline-block;
+  padding: 12px 24px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #121212;
+  background: #5ac8fa; /* Couleur principale */
+  border: none;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+  animation: shake-vertical 1.5s ease-in-out infinite; /* Animation de secousse */
+}
+
+/* Animation de secousse verticale */
+@keyframes shake-vertical {
+  0%, 100% {
+    transform: translateY(0); /* Position initiale */
+  }
+  25% {
+    transform: translateY(-3px); /* Légère montée */
+  }
+  50% {
+    transform: translateY(3px); /* Légère descente */
+  }
+  75% {
+    transform: translateY(-3px); /* Remontée */
+  }
+}
+
+/* Effet au survol */
+.cta-button:hover {
+  background: black; /* Fond noir au survol */
+  color: #5ac8fa; /* Texte bleu clair */
+  border-color: black; /* Bordure noire */
+  transform: translateY(-2px); /* Légère élévation */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Ombre plus marquée */
+}
+
+.cta-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2); /* Effet lumineux */
+  transform: skewX(-45deg);
+  transition: left 0.5s ease;
+}
+
+.cta-button:hover::before {
+  left: 100%; /* Animation de balayage */
+}
