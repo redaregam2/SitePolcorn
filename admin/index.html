@@ -59,11 +59,62 @@ fetch('stats.json')
   .then(r => r.json())
   .then(s => {
     // calcule le total de chaque jeu
-    const total = obj => Object.values(obj).reduce((a,b) => a + b, 0);
+    const total = obj => Object.values(obj).reduce((a, b) => a + b, 0);
     document.getElementById('stats-affiche').textContent =
       `Total lancements : ${total(s.devine_affiche)}`;
     document.getElementById('stats-emoji').textContent =
       `Total lancements : ${total(s.devine_emoji)}`;
+    document.getElementById('stats-infini').textContent =
+      `Total lancements : ${total(s.devine_infini)}`;
+
+    // Générer les graphiques
+    const ctxAffiche = document.getElementById('chart-affiche').getContext('2d');
+    const ctxEmoji = document.getElementById('chart-emoji').getContext('2d');
+    const ctxInfini = document.getElementById('chart-infini').getContext('2d');
+
+    const labels = Object.keys(s.devine_affiche); // Les dates
+
+    new Chart(ctxAffiche, {
+      type: 'line',
+      data: {
+        labels,
+        datasets: [{
+          label: 'Devine le film',
+          data: Object.values(s.devine_affiche),
+          borderColor: 'rgba(75, 192, 192, 1)',
+          backgroundColor: 'rgba(75, 192, 192, 0.2)',
+          borderWidth: 1
+        }]
+      }
+    });
+
+    new Chart(ctxEmoji, {
+      type: 'line',
+      data: {
+        labels,
+        datasets: [{
+          label: 'Devine avec émojis',
+          data: Object.values(s.devine_emoji),
+          borderColor: 'rgba(153, 102, 255, 1)',
+          backgroundColor: 'rgba(153, 102, 255, 0.2)',
+          borderWidth: 1
+        }]
+      }
+    });
+
+    new Chart(ctxInfini, {
+      type: 'line',
+      data: {
+        labels,
+        datasets: [{
+          label: 'Devine Infini',
+          data: Object.values(s.devine_infini),
+          borderColor: 'rgba(255, 159, 64, 1)',
+          backgroundColor: 'rgba(255, 159, 64, 0.2)',
+          borderWidth: 1
+        }]
+      }
+    });
   })
   .catch(() => {
     document.querySelectorAll('.game-stats')
@@ -83,6 +134,9 @@ fetch('stats.json')
   </div>
   <div class="chart-container">
     <canvas id="chart-emoji"></canvas>
+  </div>
+  <div class="chart-container">
+    <canvas id="chart-infini"></canvas>
   </div>
 </section>
 
