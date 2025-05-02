@@ -11,7 +11,7 @@ $db = new PDO(
 $uploadDir    = __DIR__ . '/uploads/';
 $jsonFile     = __DIR__ . '/emoji_games.json';
 $games        = file_exists($jsonFile) ? json_decode(file_get_contents($jsonFile), true) : [];
-$genres       = ['Drame','Comédie','Action','SF','Horreur','Animation','Documentaire'];
+$genres = ['Drame', 'Comédie', 'Action', 'SF', 'Horreur', 'Animation', 'Documentaire', 'Fantastique', 'Thriller'];
 $difficulties = ['Facile','Normal','Expert'];
 
 // SUPPRESSION

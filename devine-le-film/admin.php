@@ -7,7 +7,7 @@ if (!defined('ADMIN_PASSWORD')) {
 }
 
 // Listes de genres et niveaux
-$genres = ['Drame','Comédie','Action','SF','Horreur','Animation','Documentaire'];
+$genres = ['Drame', 'Comédie', 'Action', 'SF', 'Horreur', 'Animation', 'Documentaire', 'Fantastique', 'Thriller'];
 $difficulties = ['Facile','Normal','Expert'];
 
 // Authentification
