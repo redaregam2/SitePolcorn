@@ -1,0 +1,118 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #121212;
+    color: white;
+  }
+  
+  .start-screen, .game-container, .result-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
+  
+  .poster-wrapper img {
+    max-width: 300px;
+    border-radius: 8px;
+  }
+  
+  .shake {
+    animation: shake 0.5s;
+  }
+  
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+  }
+
+  .hidden {
+    display: none;
+  }
+
+/* Toast container */
+.toast-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -150%); /* Position au-dessus de l'affiche */
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    pointer-events: none; /* Empêche les interactions avec les toasts */
+  }
+  
+  /* Toast message */
+  .toast {
+    background-color: #4caf50; /* Vert pour indiquer un gain de points */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    animation: fade-in-out 3s ease forwards;
+    opacity: 0.9;
+    text-align: center;
+  }
+  
+  /* Animation for toast */
+  @keyframes fade-in-out {
+    0% {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    10%, 90% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+  }
+
+
+  .hint-container.hidden {
+    display: none;
+  }
+  
+  .hint-container {
+    display: block;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #1f1f1fb2;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    backdrop-filter: blur(8px);
+  }
+  
+  .hint {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .hint img {
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+
+  .result-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  .result-item img {
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
