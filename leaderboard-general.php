@@ -83,6 +83,41 @@
       window.location.href = '/mes-jeux.php';
     });
   </script>
+<script>
+// 1. Demande le pseudo de l'utilisateur connecté
+fetch('/api/current_user.php')
+  .then(r => r.json())
+  .then(user => {
+    const currentPseudo = user.pseudo || '';
+
+    fetch('/api/leaderboard.php?game=devine_affiche')
+      .then(r => r.json())
+      .then(board => {
+        const ol = document.getElementById('leaderboard-list');
+        ol.innerHTML = board.map((u, i) => {
+          const isCurrent = u.pseudo === currentPseudo;
+          return `
+            <li class="${isCurrent ? 'current-user' : ''}">
+              <mark>
+                ${u.pseudo}
+                ${isCurrent ? '<span class="badge-moi">Moi</span>' : ''}
+              </mark>
+              <small>${u.score}</small>
+            </li>
+          `;
+        }).join('');
+      });
+  })
+  .catch(() => {
+    document.getElementById('leaderboard-list').innerHTML =
+      '<li>Impossible de charger le classement</li>';
+  });
+
+document.getElementById('back-to-games')
+  .addEventListener('click', () => {
+    window.location.href = 'https://polcorn.com/mes-jeux.php';
+  });
+</script>
 
   <script src="/js/background.js"></script>
 </body>
