@@ -35,9 +35,7 @@
         align-items: center;
         padding: 10px 20px;
 
-        .leaderboard ol li small {
-    margin-top: 20px;
-}
+
       }
     </style>
 
