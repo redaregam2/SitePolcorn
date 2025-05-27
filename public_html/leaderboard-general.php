@@ -34,6 +34,10 @@
         justify-content: space-between;
         align-items: center;
         padding: 10px 20px;
+
+        .leaderboard ol li small {
+    margin-top: 20px;
+}
       }
     </style>
 
@@ -66,7 +70,7 @@
             Affiche : <b>${u.affiche}</b> |
             Emoji : <b>${u.emoji}</b> |
             Infini : <b>${u.infini}</b> |
-            <span style="color:#ffd700">Total : <b>${u.total}</b></span>
+            <span style="color:#ffd700 ">Total : <b>${u.total}</b></span>
           </small>
         </li>
       `).join('');
