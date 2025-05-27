@@ -68,7 +68,7 @@
             Affiche : <b>${u.affiche}</b> |
             Emoji : <b>${u.emoji}</b> |
             Infini : <b>${u.infini}</b> |
-            <span style="color:#ffd700 ">Total : <b>${u.total}</b></span>
+            <br><span style="color:#ffd700 ">Total : <b>${u.total}</b></span>
           </small>
         </li>
       `).join('');
