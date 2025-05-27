@@ -87,36 +87,39 @@ function loadPoster() {
   startTimer();
 }
 
+function normalize(str) {
+  return str
+    .toLowerCase()
+    .normalize('NFD') // décompose les accents
+    .replace(/[\u0300-\u036f]/g, '') // supprime les accents
+    .replace(/\s+/g, ''); // supprime tous les espaces
+}
 
   function checkAnswer(timeout = false) {
     clearInterval(timerInterval);
     clearTimeout(timerTimeout);
 
-    const userAns = input.value.trim().toLowerCase();
-    const item    = posters[currentIndex];
+const userAns = normalize(input.value);
+const item    = posters[currentIndex];
  
 window.scrollTo({ top: 0, behavior: 'smooth' });
 
-    const correct = item.answer.trim().toLowerCase();
+    const correct = normalize(item.answer);
 
-    // récupère aliases s'ils existent, sinon tableau vide
-    const aliases = Array.isArray(item.aliases)
-      ? item.aliases.map(a => a.trim().toLowerCase())
-      : [];
+// récupère aliases s'ils existent, sinon tableau vide
+const aliases = Array.isArray(item.aliases)
+  ? item.aliases.map(a => normalize(a))
+  : [];
 
-    let status, points = 0;
-// calcule le temps restant en ms
+let status, points = 0;
 const remMs = Math.max(0, endTimestamp - Date.now());
-// valide si exact match sur answer ou un alias
 if (!timeout && (userAns === correct || aliases.includes(userAns))) {
   status = '✅';
-  // points proportionnels au temps restant
   points = Math.ceil((remMs / TIME_PER_GAME_MS) * 100);
 } else {
   status = '❌';
   points = 0;
 }
-
 
     results.push({
       status,

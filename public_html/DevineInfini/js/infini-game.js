@@ -162,14 +162,23 @@ document.addEventListener('DOMContentLoaded', () => {
     requestAnimationFrame(tick);
   }
 
+  function normalize(str) {
+  return str
+    .toLowerCase()
+    .normalize('NFD') // décompose les accents
+    .replace(/[\u0300-\u036f]/g, '') // supprime les accents
+    .replace(/\s+/g, ''); // supprime tous les espaces
+}
+
+
 function checkAnswer(timeout = false) {
   if (!timerRunning && !timeout) return;
   timerRunning = false;
   cancelAnimationFrame(timerFrame);
 
-  const guess = input.value.trim().toLowerCase();
-  const correct = currentGame.answer.trim().toLowerCase();
-  const aliases = Array.isArray(currentGame.aliases) ? currentGame.aliases.map(a => a.trim().toLowerCase()) : [];
+  const guess = normalize(input.value);
+  const correct = normalize(currentGame.answer);
+  const aliases = Array.isArray(currentGame.aliases) ? currentGame.aliases.map(a => normalize(a)) : [];
 
   const isCorrect = !timeout && (guess === correct || aliases.includes(guess));
   input.blur();

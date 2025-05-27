@@ -113,17 +113,26 @@ if (header) {
     else                  timerDisplay.style.color = '#f44336';
   }
 
+
+function normalize(str) {
+  return str
+    .toLowerCase()
+    .normalize('NFD') // décompose les accents
+    .replace(/[\u0300-\u036f]/g, '') // supprime les accents
+    .replace(/\s+/g, ''); // supprime tous les espaces
+}
+  
   function submitAnswer(timeout) {
     clearInterval(timerInterval);
     clearTimeout(timerTimeout);
 
     const remMs     = Math.max(0, endTimestamp - Date.now());
     const g         = games[currentIndex];
-    const userGuess = input.value.trim().toLowerCase();
-    const correct   = g.answer.trim().toLowerCase();
-    const aliases   = Array.isArray(g.aliases)
-      ? g.aliases.map(a => a.trim().toLowerCase())
-      : [];
+const userGuess = normalize(input.value);
+const correct   = normalize(g.answer);
+const aliases   = Array.isArray(g.aliases)
+  ? g.aliases.map(a => normalize(a))
+  : [];
 
     let status, points = 0;
     if (!timeout && (userGuess === correct || aliases.includes(userGuess))) {
