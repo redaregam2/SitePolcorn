@@ -1,4 +1,9 @@
 /* GLOBAL & RESET */
+.result-item img[draggable="false"] {
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
 * {
   box-sizing: border-box;
   margin: 0;

@@ -1,0 +1,2 @@
+npm run serve:php   # ou php -S localhost:8000 -t public_html
+npm run serve:bs    # si tu utilises BrowserSync

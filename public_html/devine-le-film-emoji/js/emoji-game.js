@@ -241,6 +241,9 @@ fetch('/api/record_session.php', {
         <div class="result-item">
           <div class="emojis">${r.emojis.join(' ')}</div>
           <h3>${n} / ${tot} — ${r.userGuess} <span class="status-icon">❌</span></h3>
+          <img src="https://polcorn.com/devine-le-film-emoji/${r.poster}" alt="Affiche floutée"   style="filter: blur(8px); pointer-events: none; user-drag: none; user-select: none;" 
+  draggable="false" 
+  oncontextmenu="return false;">
           <p class="points">0 pt</p>
         </div>`;
     }
