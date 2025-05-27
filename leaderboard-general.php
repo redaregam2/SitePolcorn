@@ -34,7 +34,19 @@
         justify-content: space-between;
         align-items: center;
         padding: 10px 20px;
-
+.current-user mark {
+  background: #ffd700;
+  color: #222;
+}
+.badge-moi {
+  background: #222;
+  color: #ffd700;
+  border-radius: 8px;
+  padding: 2px 8px;
+  margin-left: 8px;
+  font-size: 0.8em;
+  font-weight: bold;
+}
 
       }
     </style>
@@ -54,43 +66,13 @@
     </button>
   </div>
 
-  <script>
-  fetch('/api/leaderboard_general.php')
-    .then(r => r.json())
-    .then(board => {
-      const ol = document.getElementById('leaderboard-list');
-      ol.innerHTML = board.map((u, i) => `
-        <li>
-          <mark>
-            ${u.pseudo}
-          </mark>
-          <small>
-            Affiche : <b>${u.affiche}</b> |
-            Emoji : <b>${u.emoji}</b> |
-            Infini : <b>${u.infini}</b> |
-            <br><span style="color:#ffd700 ">Total : <b>${u.total}</b></span>
-          </small>
-        </li>
-      `).join('');
-    })
-    .catch(() => {
-      document.getElementById('leaderboard-list').innerHTML =
-        '<li>Impossible de charger le classement</li>';
-    });
-
-  document.getElementById('back-to-games')
-    .addEventListener('click', () => {
-      window.location.href = '/mes-jeux.php';
-    });
-  </script>
 <script>
-// 1. Demande le pseudo de l'utilisateur connecté
 fetch('/api/current_user.php')
   .then(r => r.json())
   .then(user => {
     const currentPseudo = user.pseudo || '';
 
-    fetch('/api/leaderboard.php?game=devine_affiche')
+    fetch('/api/leaderboard_general.php')
       .then(r => r.json())
       .then(board => {
         const ol = document.getElementById('leaderboard-list');
@@ -102,10 +84,19 @@ fetch('/api/current_user.php')
                 ${u.pseudo}
                 ${isCurrent ? '<span class="badge-moi">Moi</span>' : ''}
               </mark>
-              <small>${u.score}</small>
+              <small>
+                Affiche : <b>${u.affiche}</b> |
+                Emoji : <b>${u.emoji}</b> |
+                Infini : <b>${u.infini}</b> |
+                <span style="color:#ffd700">Total : <b>${u.total}</b></span>
+              </small>
             </li>
           `;
         }).join('');
+      })
+      .catch(() => {
+        document.getElementById('leaderboard-list').innerHTML =
+          '<li>Impossible de charger le classement</li>';
       });
   })
   .catch(() => {
@@ -115,7 +106,7 @@ fetch('/api/current_user.php')
 
 document.getElementById('back-to-games')
   .addEventListener('click', () => {
-    window.location.href = 'https://polcorn.com/mes-jeux.php';
+    window.location.href = '/mes-jeux.php';
   });
 </script>
 
