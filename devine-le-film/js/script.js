@@ -267,7 +267,9 @@ fetch('/api/record_session.php', {
       return `
         <div class="result-item">
           <h3>${n} / ${tot} — ${r.userGuess} <span class="status-icon">❌</span></h3>
-          <img src="${r.posterBefore}" alt="Affiche sans titre">
+          <img src="${r.posterAfter}" alt="Affiche floutée"   style="filter: blur(8px); pointer-events: none; user-drag: none; user-select: none;" 
+  draggable="false" 
+  oncontextmenu="return false;">
           <p class="points">0 pt</p>
         </div>`;
     }

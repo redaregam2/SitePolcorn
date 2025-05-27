@@ -58,15 +58,16 @@ session_start();
           <a href="/devine-le-film-emoji/" class="play-btn">Jouer</a>
         </div>
         <div class="game-card">
+          <img src="images/thumb-infini.png" alt="Devine le film – Mode Infini" class="game-thumb">
+          <h2>Mode Infini</h2>
+          <a href="/DevineInfini/" class="play-btn">Jouer</a>
+          </div>
+        <div class="game-card">
           <img src="images/thumb-posters.png" alt="Devine le film sans le titre" class="game-thumb">
           <h2>Devine le film sans le titre</h2>
           <a href="/devine-le-film/" class="play-btn">Jouer</a>
         </div>
-        <div class="game-card">
-    <img src="images/thumb-infini.png" alt="Devine le film – Mode Infini" class="game-thumb">
-    <h2>Mode Infini</h2>
-    <a href="/DevineInfini/" class="play-btn">Jouer</a>
-  </div>
+        
       </div>
       <section class="submit-section">
   <h2>Vous avez un film à proposer ?</h2>

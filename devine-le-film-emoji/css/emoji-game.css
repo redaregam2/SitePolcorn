@@ -1,5 +1,9 @@
 /* === GLOBAL MOBILE-FIRST === */
-
+.result-item img[draggable="false"] {
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;

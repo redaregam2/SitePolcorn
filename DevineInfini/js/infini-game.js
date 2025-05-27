@@ -309,43 +309,48 @@ if (userStatus.logged_in) {
 }
 
 
-    resultsList.innerHTML = history.map((r, i) => {
-      const n = i + 1, tot = history.length;
-      if (r.type === 'emoji') {
-        if (r.status === '✅') {
-          return `
-            <div class="result-item">
-              <div class="emojis">${r.emojis.join(' ')}</div>
-              <h3>${n} / ${tot} — ${r.answer} <span class="status-icon">✅</span></h3>
-              <img src="https://polcorn.com/devine-le-film-emoji/${r.poster}" alt="${r.answer}">
-              <p class="points">${r.points} pts</p>
-            </div>`;
-        } else {
-          return `
-            <div class="result-item">
-              <div class="emojis">${r.emojis.join(' ')}</div>
-              <h3>${n} / ${tot} — ${r.userGuess} <span class="status-icon">❌</span></h3>
-              <p class="points">0 pt</p>
-            </div>`;
-        }
-      } else {
-        if (r.status === '✅') {
-          return `
-            <div class="result-item">
-              <h3>${n} / ${tot} — ${r.answer} <span class="status-icon">✅</span></h3>
-              <img src="/devine-le-film/${r.after}" alt="${r.answer}">
-              <p class="points">${r.points} pts</p>
-            </div>`;
-        } else {
-          return `
-            <div class="result-item">
-              <h3>${n} / ${tot} — ${r.userGuess} <span class="status-icon">❌</span></h3>
-              <img src="/devine-le-film/${r.before}" alt="Affiche sans titre">
-              <p class="points">0 pt</p>
-            </div>`;
-        }
-      }
-    }).join('');
+resultsList.innerHTML = history.map((r, i) => {
+  const n = i + 1, tot = history.length;
+  if (r.type === 'emoji') {
+    if (r.status === '✅') {
+      return `
+        <div class="result-item">
+          <div class="emojis">${r.emojis.join(' ')}</div>
+          <h3>${n} / ${tot} — ${r.answer} <span class="status-icon">✅</span></h3>
+          <img src="https://polcorn.com/devine-le-film-emoji/${r.poster}" alt="${r.answer}">
+          <p class="points">${r.points} pts</p>
+        </div>`;
+    } else {
+      return `
+        <div class="result-item">
+          <div class="emojis">${r.emojis.join(' ')}</div>
+          <h3>${n} / ${tot} — ${r.userGuess} <span class="status-icon">❌</span></h3>
+          <img src="https://polcorn.com/devine-le-film-emoji/${r.poster}" alt="Affiche floutée"   style="filter: blur(8px); pointer-events: none; user-drag: none; user-select: none;" 
+  draggable="false" 
+  oncontextmenu="return false;">
+          <p class="points">0 pt</p>
+        </div>`;
+    }
+  } else {
+    if (r.status === '✅') {
+      return `
+        <div class="result-item">
+          <h3>${n} / ${tot} — ${r.answer} <span class="status-icon">✅</span></h3>
+          <img src="/devine-le-film/${r.after}" alt="${r.answer}">
+          <p class="points">${r.points} pts</p>
+        </div>`;
+    } else {
+      return `
+        <div class="result-item">
+          <h3>${n} / ${tot} — ${r.userGuess} <span class="status-icon">❌</span></h3>
+          <img src="/devine-le-film/${r.after}" alt="Affiche floutée"   style="filter: blur(8px); pointer-events: none; user-drag: none; user-select: none;" 
+  draggable="false" 
+  oncontextmenu="return false;">
+          <p class="points">0 pt</p>
+        </div>`;
+    }
+  }
+}).join('');
 
     if (userStatus.logged_in) {
       fetch('/api/record_score.php', {
