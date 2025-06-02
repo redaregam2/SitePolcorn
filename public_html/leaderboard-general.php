@@ -54,7 +54,7 @@
     <div class="leaderboard">
       <h1>
         <img src="/images/cup1.png" class="ico-cup" alt="Trophée">
-        Classement Général POLCORN
+        Classement Général
       </h1>
       <ol id="leaderboard-list">
         <!-- JS injecte ici -->
@@ -88,7 +88,7 @@ fetch('/api/current_user.php')
                 Affiche : <b>${u.affiche}</b> |
                 Emoji : <b>${u.emoji}</b> |
                 Infini : <b>${u.infini}</b> |
-                <span style="color:#ffd700">Total : <b>${u.total}</b></span>
+                <br><span style="color:#ffd700">Total : <b>${u.total}</b></span>
               </small>
             </li>
           `;
