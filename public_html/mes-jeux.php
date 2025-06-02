@@ -60,7 +60,7 @@ session_start();
   <span id="fin-saison-timer"></span>
 </div>
       <p>
-        Participe à notre <strong>nouvelle saison</strong> de jeux pour remporter <strong>2 places de cinéma</strong> !<br>
+        Participe à notre <strong>nouvelle saison</strong> de jeux pour remporter <strong>3 places de cinéma</strong> !<br>
         À la fin de la saison, le <strong>joueur en tête du classement</strong> et un <strong>joueur aléatoire</strong> seront récompensés.
       </p>
       <div class="submit-buttons">
