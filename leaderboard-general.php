@@ -54,7 +54,7 @@
     <div class="leaderboard">
       <h1>
         <img src="/images/cup1.png" class="ico-cup" alt="Trophée">
-        Classement Général
+        Classement Général <br> Saison 1
       </h1>
       <ol id="leaderboard-list">
         <!-- JS injecte ici -->
