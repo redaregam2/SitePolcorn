@@ -50,6 +50,24 @@ session_start();
 </style>
 
     <main class="main-content">
+     
+<section class="submit-section saison">
+  <div class="saison-flex">
+    <div class="gauche">
+      <h2>🎬 <strong>Nouvelle Saison Polcorn Games</strong> !</h2>
+      <p>
+        Participe à notre <strong>nouvelle saison</strong> de jeux pour remporter <strong>2 places de cinéma</strong> !<br>
+        À la fin de la saison, le <strong>joueur en tête du classement</strong> et un <strong>joueur aléatoire</strong> seront récompensés.
+      </p>
+      <div class="submit-buttons">
+        <a href="https://polcorn.com/leaderboard-general.php" class="submit-btn">Voir classement Saison 1</a>
+      </div>
+    </div>
+    <div class="droite">
+      <img src="images/tick.png" alt="tick" />
+    </div>
+  </div>
+</section>
       <h1>Les jeux</h1>
       <div class="games-container">
         <div class="game-card">
