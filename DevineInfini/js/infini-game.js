@@ -191,7 +191,7 @@ function checkAnswer(timeout = false) {
     const rem = TIME_PER_GAME_MS - responseDuration;
     basePts = Math.ceil((rem / TIME_PER_GAME_MS) * 100);
   }
-  let bonusPts = combo * 10;
+  let bonusPts = isCorrect ? 10 : 0; // Toujours +10, combo ou pas
   let totalPts = isCorrect ? basePts + bonusPts : 0;
 
   history.push({
