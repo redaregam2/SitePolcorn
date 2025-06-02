@@ -55,6 +55,10 @@ session_start();
   <div class="saison-flex">
     <div class="gauche">
       <h2>🎬 <strong>Nouvelle Saison Polcorn Games</strong> !</h2>
+      <div class="fin-saison-timer">
+  <span>Fin de saison&nbsp;:</span>
+  <span id="fin-saison-timer"></span>
+</div>
       <p>
         Participe à notre <strong>nouvelle saison</strong> de jeux pour remporter <strong>2 places de cinéma</strong> !<br>
         À la fin de la saison, le <strong>joueur en tête du classement</strong> et un <strong>joueur aléatoire</strong> seront récompensés.
@@ -100,5 +104,26 @@ session_start();
   </div>
 
   <script src="/js/background.js"></script>
+  <script>
+function updateFinSaisonTimer() {
+  // Date cible : 3 juillet 2025 à 23:59:59
+  const end = new Date('2025-07-03T23:59:59+02:00');
+  const now = new Date();
+  let diff = Math.max(0, end - now);
+
+  const jours = Math.floor(diff / (1000 * 60 * 60 * 24));
+  diff -= jours * (1000 * 60 * 60 * 24);
+  const heures = Math.floor(diff / (1000 * 60 * 60));
+  diff -= heures * (1000 * 60 * 60);
+  const minutes = Math.floor(diff / (1000 * 60));
+  diff -= minutes * (1000 * 60);
+  const secondes = Math.floor(diff / 1000);
+
+  document.getElementById('fin-saison-timer').textContent =
+    `${jours}j ${heures}h ${minutes}m ${secondes}s`;
+}
+setInterval(updateFinSaisonTimer, 1000);
+updateFinSaisonTimer();
+</script>
 </body>
 </html>

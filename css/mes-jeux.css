@@ -181,3 +181,49 @@ body {
     text-align: center; /* Pour recentrer sur mobile */
   }
 }
+
+/* À ajouter dans css/mes-jeux.css ou dans un <style> de la page */
+.fin-saison-timer {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(90deg, #5ac7fa3d 0%, #2195f349 100%);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 1.1em;
+  border-radius: 7px;
+  padding: 8px 22px;
+  margin-bottom: 18px;
+  box-shadow: 0 2px 12px rgba(90,200,250,0.10);
+  letter-spacing: 0.5px;
+  border: 1px solid rgba(255, 255, 255, 0.486);
+  backdrop-filter: blur(8px);
+}
+
+.fin-saison-timer span:last-child {
+  font-family: 'Poppins', monospace, sans-serif;
+  font-size: 1.08em;
+  color: #ffffff;
+  margin-left: 8px;
+  background: #9bcaff99;
+  border-radius: 12px;
+  padding: 2px 12px;
+  min-width: 110px;
+  display: inline-block;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  box-shadow: 0 1px 4px rgba(90,200,250,0.08);
+}
+
+@media (max-width: 700px) {
+  .fin-saison-timer {
+    font-size: 1em;
+    padding: 7px 10px;
+    margin-bottom: 14px;
+  }
+  .fin-saison-timer span:last-child {
+    font-size: 1em;
+    min-width: 90px;
+    padding: 2px 8px;
+  }
+}
