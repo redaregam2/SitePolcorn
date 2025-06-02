@@ -1,6 +1,31 @@
 /*--------------------
 Leaderboard (supahfunk style)
 --------------------*/
+
+.site-content {
+  margin-top: 80px; /* ajuste selon la hauteur réelle du header */
+}
+
+/* Si tu veux scroller seulement la liste sans toucher au HTML */
+.leaderboard {
+  /* optionnel : largeur max et centrage */
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.leaderboard h1 {
+  margin-bottom: 16px;
+}
+
+/* Rends la liste déroulante si elle est trop grande */
+.leaderboard ol {
+  max-height: calc(100vh - 220px); /* Ajuste 220px selon la hauteur du header + h1 + bouton */
+  overflow-y: auto;
+  padding-right: 12px; /* Pour ne pas avoir la scrollbar sur le texte */
+}
+
+
+
         .leaderboard ol li small {
     margin-top: 20px;
 }
